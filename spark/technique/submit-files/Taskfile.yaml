@@ -1,0 +1,33 @@
+version: '3'
+env:
+  JAVA_HOME: /nix/var/nix/profiles/jdk11
+  HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
+  HADOOP_HOME: /opt/hadoop
+  SPARK_HOME: /opt/spark
+
+tasks:
+  build: mvn -B package -e --file pom.xml
+
+  submit-CheckSparkSubmittedFiles:
+    - >
+      /opt/spark/bin/spark-submit
+      --master yarn
+      --deploy-mode cluster
+      --name CheckSparkSubmittedFiles
+      --class CheckSparkSubmittedFiles
+      --files /etc/os-release
+      target/spark.basic-1.0.0-SNAPSHOT.jar os-release
+
+  submit-java:
+    - >
+      /opt/spark/bin/spark-submit
+      --master yarn
+      --deploy-mode cluster
+      --driver-memory 500m
+      --driver-cores 1
+      --executor-memory 500m
+      --executor-cores 1
+      --num-executors 1
+      --name {{.CLI_ARGS}}
+      --class {{.CLI_ARGS}}
+      target/spark.basic-1.0.0-SNAPSHOT.jar
