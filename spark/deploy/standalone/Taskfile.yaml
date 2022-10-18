@@ -1,0 +1,11 @@
+version: '3'
+env:
+  HADOOP_CONF_DIR: ./conf
+
+tasks:
+  build: docker buildx build . --network=host --file Dockerfile --tag spark:ubuntu22.04
+  start:
+    - docker rm --force sparkd
+    - docker run -d --network=host --name sparkd spark:ubuntu22.04
+    - sleep 2
+    - docker ps -a
