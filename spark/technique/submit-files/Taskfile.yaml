@@ -8,13 +8,13 @@ env:
 tasks:
   build: mvn -B package -e --file pom.xml
 
-  submit-CheckSparkSubmittedFiles:
+  submit-SparkSubmittedFiles:
     - >
       /opt/spark/bin/spark-submit
       --master yarn
       --deploy-mode cluster
-      --name CheckSparkSubmittedFiles
-      --class CheckSparkSubmittedFiles
+      --name SparkSubmittedFiles
+      --class SparkSubmittedFiles
       --files /etc/os-release
       target/spark.basic-1.0.0-SNAPSHOT.jar os-release
 
