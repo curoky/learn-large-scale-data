@@ -1,0 +1,37 @@
+version: '3'
+env:
+  JAVA_HOME: /nix/var/nix/profiles/jdk11
+  HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
+  HADOOP_HOME: /opt/hadoop
+  SPARK_HOME: /opt/spark
+
+tasks:
+  build: mvn -B package -e --file pom.xml
+
+  submit-java:
+    - >
+      /opt/spark/bin/spark-submit
+      --master yarn
+      --deploy-mode cluster
+      --driver-memory 500m
+      --driver-cores 1
+      --executor-memory 500m
+      --executor-cores 1
+      --num-executors 1
+      --name {{.CLI_ARGS}}
+      --class {{.CLI_ARGS}}
+      target/spark.via-rdd-1.0.0-SNAPSHOT.jar
+
+  submit-py:
+    - >
+      /opt/spark/bin/spark-submit
+      --master yarn
+      --deploy-mode cluster
+      --driver-memory 500m
+      --driver-cores 1
+      --executor-memory 500m
+      --executor-cores 1
+      --num-executors 1
+      --name {{.CLI_ARGS}}
+      --class {{.CLI_ARGS}}
+      {{.CLI_ARGS}}.py
