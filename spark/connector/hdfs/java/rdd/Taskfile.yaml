@@ -18,6 +18,7 @@ tasks:
       --executor-memory 500m
       --executor-cores 1
       --num-executors 1
+      --conf spark.yarn.maxAppAttempts=1
       --name {{.CLI_ARGS}}
       --class {{.CLI_ARGS}}
       target/spark.via-rdd-1.0.0-SNAPSHOT.jar
@@ -32,6 +33,7 @@ tasks:
       --executor-memory 500m
       --executor-cores 1
       --num-executors 1
+      --conf spark.yarn.maxAppAttempts=1
       --name {{.CLI_ARGS}}
       --class {{.CLI_ARGS}}
       {{.CLI_ARGS}}.py
