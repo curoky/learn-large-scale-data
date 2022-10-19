@@ -13,6 +13,9 @@
   <url>https://github.com/curoky/learnLargeScaleData</url>
 
   <modules>
+    <module>spark/basic</module>
+    <module>spark/via-rdd</module>
+    <module>spark/via-sql</module>
     <module>spark/spark-streaming</module>
     <module>spark/structed-streaming</module>
   </modules>
