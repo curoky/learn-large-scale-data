@@ -21,4 +21,4 @@ tasks:
       --conf spark.yarn.maxAppAttempts=1
       --name {{.CLI_ARGS}}
       --class {{.CLI_ARGS}}
-      target/spark.data-source-1.0.0-SNAPSHOT.jar
+      target/spark.spark-streaming-1.0.0-SNAPSHOT.jar
