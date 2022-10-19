@@ -1,0 +1,14 @@
+version: '3'
+env:
+  HADOOP_CONF_DIR: ./conf
+
+tasks:
+  build: docker buildx build . --network=host --file Dockerfile --tag hadoop:ubuntu22.04
+  start:
+    - docker rm --force hadoopd
+    - docker run -d --network=host --name hadoopd hadoop:ubuntu22.04
+    - sleep 2
+    - docker ps -a
+  test:
+    - docker exec hadoopd /opt/hadoop/bin/hadoop fs -mkdir /222
+    - docker exec hadoopd /opt/hadoop/bin/hadoop fs -ls /
