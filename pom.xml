@@ -13,11 +13,13 @@
   <url>https://github.com/curoky/learnLargeScaleData</url>
 
   <modules>
-    <module>spark/basic</module>
-    <module>spark/via-rdd</module>
-    <module>spark/via-sql</module>
-    <module>spark/spark-streaming</module>
-    <module>spark/structed-streaming</module>
+    <module>spark/connector/hdfs/rdd/java</module>
+    <module>spark/connector/hdfs/sql/java</module>
+    <module>spark/connector/hive/sql/java</module>
+    <module>spark/connector/hudi/sql/java</module>
+    <module>spark/connector/kafka/spark-streaming/java</module>
+    <module>spark/connector/kafka/structed-streaming/java</module>
+    <module>spark/technique/submit-files</module>
   </modules>
 
   <properties>

@@ -1,0 +1,10 @@
+version: '3'
+
+includes:
+  base: ../../../../utils/taskfile/Taskfile.yaml
+
+tasks:
+  submit:
+    - task: base:submit-py
+      vars:
+        PYNAME: ReadKafka

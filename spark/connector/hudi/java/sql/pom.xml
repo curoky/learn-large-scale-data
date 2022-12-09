@@ -11,9 +11,9 @@
     <relativePath>../../../../..</relativePath>
   </parent>
 
-  <artifactId>spark.hdfs.via-rdd</artifactId>
+  <artifactId>spark.hudi.via-sql</artifactId>
   <packaging>jar</packaging>
-  <name>spark.hdfs.via-rdd</name>
+  <name>spark.hudi.via-sql</name>
 
   <dependencies>
     <dependency>
@@ -23,6 +23,18 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-sql_2.13</artifactId>
+      <version>3.3.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.hudi</groupId>
+      <artifactId>hudi-spark3.3-bundle_2.12</artifactId>
+      <version>0.12.0</version>
+    </dependency>
   </dependencies>
 
   <build>

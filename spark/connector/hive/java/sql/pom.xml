@@ -11,9 +11,9 @@
     <relativePath>../../../../..</relativePath>
   </parent>
 
-  <artifactId>spark.hdfs.via-rdd</artifactId>
+  <artifactId>spark.hive.via-sql</artifactId>
   <packaging>jar</packaging>
-  <name>spark.hdfs.via-rdd</name>
+  <name>spark.hive.via-sql</name>
 
   <dependencies>
     <dependency>
@@ -23,6 +23,12 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-sql_2.13</artifactId>
+      <version>3.3.0</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>

@@ -1,0 +1,41 @@
+version: '3'
+env:
+  JAVA_HOME: /nix/var/nix/profiles/jdk11
+  HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
+  HADOOP_HOME: /opt/hadoop
+  SPARK_HOME: /opt/spark
+
+tasks:
+  build: mvn -B package -e --file pom.xml
+
+  submit-java:
+    vars:
+      DEPLOY_MODE: '{{default "cluster" .DEPLOY_MODE}}'
+    cmds:
+      - >
+        /opt/spark/bin/spark-submit
+        --master yarn
+        --deploy-mode {{.DEPLOY_MODE}}
+        --driver-memory 500m
+        --driver-cores 1
+        --executor-memory 500m
+        --executor-cores 1
+        --num-executors 1
+        --conf spark.yarn.maxAppAttempts=1
+        --name {{.CLASS}}
+        --class {{.CLASS}}
+        {{.JAR_PATH}} {{.CLI_ARGS}}
+
+  submit-py:
+    - >
+      /opt/spark/bin/spark-submit
+      --master yarn
+      --deploy-mode cluster
+      --driver-memory 500m
+      --driver-cores 1
+      --executor-memory 500m
+      --executor-cores 1
+      --num-executors 1
+      --conf spark.yarn.maxAppAttempts=1
+      --name {{.PYNAME}}
+      {{.PYNAME}}.py {{.CLI_ARGS}}

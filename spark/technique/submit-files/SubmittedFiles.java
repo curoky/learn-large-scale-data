@@ -21,7 +21,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;
 
-public class SparkSubmittedFiles {
+public class SubmittedFiles {
   public static void main(String[] args) {
     if (args.length < 1) {
       System.out.println("Usage: CheckSparkSubmittedFiles <file>");

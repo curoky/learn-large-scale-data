@@ -1,39 +1,12 @@
 version: '3'
-env:
-  JAVA_HOME: /nix/var/nix/profiles/jdk11
-  HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
-  HADOOP_HOME: /opt/hadoop
-  SPARK_HOME: /opt/spark
 
+includes:
+  base: ../../../../utils/taskfile/Taskfile.yaml
+
+# task submit -- /mock-data/multi_word_one_line
 tasks:
-  build: mvn -B package -e --file pom.xml
-
-  submit-java:
-    - >
-      /opt/spark/bin/spark-submit
-      --master yarn
-      --deploy-mode cluster
-      --driver-memory 500m
-      --driver-cores 1
-      --executor-memory 500m
-      --executor-cores 1
-      --num-executors 1
-      --conf spark.yarn.maxAppAttempts=1
-      --name {{.CLI_ARGS}}
-      --class {{.CLI_ARGS}}
-      target/spark.via-sql-1.0.0-SNAPSHOT.jar /LICENSE.txt
-
-  submit-py:
-    - >
-      /opt/spark/bin/spark-submit
-      --master yarn
-      --deploy-mode cluster
-      --driver-memory 500m
-      --driver-cores 1
-      --executor-memory 500m
-      --executor-cores 1
-      --num-executors 1
-      --conf spark.yarn.maxAppAttempts=1
-      --name {{.CLI_ARGS}}
-      --class {{.CLI_ARGS}}
-      {{.CLI_ARGS}}.py /LICENSE.txt
+  submit:
+    - task: base:submit-java
+      vars:
+        JAR_PATH: target/spark.hdfs.via-sql-1.0.0-SNAPSHOT.jar
+        CLASS: ReadHDFS

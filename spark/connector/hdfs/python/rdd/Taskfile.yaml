@@ -6,7 +6,6 @@ includes:
 # task submit -- /mock-data/multi_word_one_line
 tasks:
   submit:
-    - task: base:submit-java
+    - task: base:submit-py
       vars:
-        JAR_PATH: target/spark.hdfs.via-rdd-1.0.0-SNAPSHOT.jar
-        CLASS: ReadHDFS
+        PYNAME: ReadHDFS

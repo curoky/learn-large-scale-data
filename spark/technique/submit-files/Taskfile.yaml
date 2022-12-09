@@ -1,35 +1,16 @@
 version: '3'
-env:
-  JAVA_HOME: /nix/var/nix/profiles/jdk11
-  HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
-  HADOOP_HOME: /opt/hadoop
-  SPARK_HOME: /opt/spark
+
+includes:
+  base: ../../utils/taskfile/Taskfile.yaml
 
 tasks:
-  build: mvn -B package -e --file pom.xml
-
-  submit-SparkSubmittedFiles:
+  submit-SubmittedFiles:
     - >
       /opt/spark/bin/spark-submit
       --master yarn
       --deploy-mode cluster
       --conf spark.yarn.maxAppAttempts=1
-      --name SparkSubmittedFiles
-      --class SparkSubmittedFiles
+      --name SubmittedFiles
+      --class SubmittedFiles
       --files /etc/os-release
-      target/spark.basic-1.0.0-SNAPSHOT.jar os-release
-
-  submit-java:
-    - >
-      /opt/spark/bin/spark-submit
-      --master yarn
-      --deploy-mode cluster
-      --driver-memory 500m
-      --driver-cores 1
-      --executor-memory 500m
-      --executor-cores 1
-      --num-executors 1
-      --conf spark.yarn.maxAppAttempts=1
-      --name {{.CLI_ARGS}}
-      --class {{.CLI_ARGS}}
-      target/spark.basic-1.0.0-SNAPSHOT.jar
+      target/spark.technique.submit-files-1.0.0-SNAPSHOT.jar os-release

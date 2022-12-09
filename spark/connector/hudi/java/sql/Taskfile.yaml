@@ -7,5 +7,5 @@ tasks:
   submit:
     - task: base:submit-java
       vars:
-        JAR_PATH: target/spark.kafka.structed-streaming-1.0.0-SNAPSHOT.jar
-        CLASS: ReadKafka
+        JAR_PATH: target/spark.hudi.via-sql-1.0.0-SNAPSHOT.jar
+        CLASS: ReadHudi
