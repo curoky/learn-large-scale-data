@@ -1,0 +1,6 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - mvn exec:java -D exec.mainClass=KConsumer
