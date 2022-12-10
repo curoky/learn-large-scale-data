@@ -23,7 +23,7 @@ from kafka import KafkaProducer
 
 
 def main():
-    producer = KafkaProducer(bootstrap_servers='0.0.0.0:40800', acks='all')
+    producer = KafkaProducer(bootstrap_servers='kafka:40800', acks='all')
 
     while True:
         producer.send(topic='learn-kafka-py', value=b'hello world!')

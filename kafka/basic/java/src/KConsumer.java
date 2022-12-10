@@ -31,7 +31,7 @@ public class KConsumer {
   public static void main(String[] args) {
     Properties props = new Properties();
 
-    props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "0.0.0.0:40800");
+    props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "kafka:40800");
     props.put(CommonClientConfigs.CLIENT_ID_CONFIG, "learn-kafka-java-basic");
     props.put(CommonClientConfigs.GROUP_ID_CONFIG, "learn-kafka-java-basic");
     props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());

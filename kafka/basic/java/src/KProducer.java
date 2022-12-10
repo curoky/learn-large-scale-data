@@ -28,7 +28,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 public class KProducer {
   public static void main(String[] args) {
     Properties props = new Properties();
-    props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "0.0.0.0:40800");
+    props.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, "kafka:40800");
     props.put(CommonClientConfigs.CLIENT_ID_CONFIG, "learn-kafka-java-basic");
     props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
     props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
