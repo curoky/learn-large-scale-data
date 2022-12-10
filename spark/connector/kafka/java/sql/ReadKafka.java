@@ -30,7 +30,7 @@ public class ReadKafka {
     Dataset<Row> df = spark.readStream()
                           .format("kafka")
                           .option("kafka.bootstrap.servers", "kafka:40800")
-                          .option("subscribe", "hello")
+                          .option("subscribe", "mock_key_empty_value_str")
                           // .option("includeHeaders", "true")
                           .load();
     try {

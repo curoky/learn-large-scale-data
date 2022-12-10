@@ -31,7 +31,7 @@ def main():
         .option('max.poll.records', 100) \
         .option('kafka.bootstrap.servers', 'kafka:40800') \
         .option('kafka.group.id', 'ExampleStructedStreamingReadKafka') \
-        .option('subscribe', 'hello') \
+        .option('subscribe', 'mock_key_empty_value_str') \
         .load()
     # .option('kafka.cluster', '') \
     # .option('kafka.group.id', '')  \

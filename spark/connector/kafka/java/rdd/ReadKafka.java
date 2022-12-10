@@ -51,7 +51,7 @@ public class ReadKafka {
         ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest"); // "latest", "earliest", "none"
     kafkaParams.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
 
-    List<String> topics = Arrays.asList("hello");
+    List<String> topics = Arrays.asList("mock_key_empty_value_str");
 
     JavaInputDStream<ConsumerRecord<String, String>> stream =
         KafkaUtils.createDirectStream(jssc, LocationStrategies.PreferConsistent(),
