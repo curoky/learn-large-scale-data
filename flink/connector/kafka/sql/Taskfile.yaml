@@ -1,0 +1,15 @@
+version: '3'
+
+env:
+  HADOOP_HOME: /opt/hadoop
+  HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
+  FLINK_CONF_DIR: /opt/flink/conf
+  FLINK_LOG_DIR: .
+
+tasks:
+  submit-read:
+    cmds:
+      - /opt/flink/bin/sql-client.sh -f ./read_kafka.sql
+  submit-write:
+    cmds:
+      - /opt/flink/bin/sql-client.sh -f ./write_kafka.sql
