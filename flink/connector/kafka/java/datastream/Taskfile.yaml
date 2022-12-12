@@ -1,0 +1,24 @@
+version: '3'
+env:
+  JAVA_HOME: /nix/var/nix/profiles/jdk11
+  HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
+  HADOOP_HOME: /opt/hadoop
+  FLINK_CONF_DIR: /opt/flink/conf
+  FLINK_LOG_DIR: .
+
+tasks:
+  submit-read:
+    - >
+      /opt/flink/bin/flink run
+      --jobmanager hadoop:8082
+      --class ReadKafka
+      --parallelism 1
+      target/flink.kafka.datastream-1.0.0-SNAPSHOT.jar
+
+  submit-write:
+    - >
+      /opt/flink/bin/flink run
+      --jobmanager hadoop:8082
+      --class WriteKafka
+      --parallelism 1
+      target/flink.kafka.datastream-1.0.0-SNAPSHOT.jar
