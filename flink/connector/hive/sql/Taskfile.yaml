@@ -1,0 +1,17 @@
+version: '3'
+
+env:
+  HADOOP_HOME: /opt/hadoop
+  HADOOP_CONF_DIR: /opt/hadoop/etc/hadoop
+  FLINK_HOME: /opt/flink
+  FLINK_CONF_DIR: /opt/flink/conf
+  FLINK_LOG_DIR: .
+  JAVA_HOME: /nix/var/nix/profiles/jdk8/lib/openjdk
+
+tasks:
+  submit-read:
+    cmds:
+      - HADOOP_CLASSPATH=`/opt/hadoop/bin/hadoop classpath` /opt/flink/bin/sql-client.sh -f ./read_hive.sql
+  submit-write:
+    cmds:
+      - HADOOP_CLASSPATH=`/opt/hadoop/bin/hadoop classpath` /opt/flink/bin/sql-client.sh -f ./write_hive.sql
